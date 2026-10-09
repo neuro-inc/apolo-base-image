@@ -85,7 +85,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py313_26.5.3-1-L
 # Python
 # ------------------------------------------------------------------
     PIP_INSTALL="python -m pip --no-cache-dir install --upgrade" && \
-    $PIP_INSTALL pip pipx && \
+    $PIP_INSTALL pip 'pipx<1.17' && \
     python3 -m pipx ensurepath && \
     $PIP_INSTALL -r /tmp/requirements/python.txt --extra-index-url https://download.pytorch.org/whl && \
     conda install --override-channels --channel conda-forge nb_conda_kernels==2.5.1 'packaging<26'
