@@ -4,7 +4,7 @@ on:
   workflow_call: {}
 
 jobs:
-  build:
+  test:
     name: Build and test image
     runs-on: ubuntu-latest
     timeout-minutes: 150
@@ -97,3 +97,17 @@ jobs:
           compression-level: 0
           if-no-files-found: error
           retention-days: 1
+
+  check:
+    name: CI success
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if any test matrix job did not succeed
+        if: needs.test.result != 'success'
+        run: |
+          echo "test matrix result: ${{ needs.test.result }}"
+          exit 1
+      - name: Success
+        run: echo "All test matrix jobs succeeded"
