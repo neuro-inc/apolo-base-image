@@ -75,12 +75,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Login DockerHub
-        uses: docker/login-action@v4
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
       - name: Get image tags
         id: get-image-tags
         run: |
@@ -135,10 +129,6 @@ jobs:
           fi
           echo "$TARGET_IMAGE_TAGS" > released_tags.txt
           make image_deploy
-          if [[ $BASE_IMAGE_TYPE == runtime ]]; then
-            TARGET_IMAGE_NAME="neuromation/base"
-            make image_deploy
-          fi
 
       - name: Upload release metadata
         uses: actions/upload-artifact@v7
