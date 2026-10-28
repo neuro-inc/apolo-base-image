@@ -9,7 +9,7 @@ packaging==25.0
 pandas==2.3.3
 Pillow==13.0.0
 scikit-learn==1.9.1
-scipy==1.18.0
+scipy==1.18.1
 tensorboardX==2.6.5
 tqdm==4.70.0
 wandb[aws]==0.28.1
