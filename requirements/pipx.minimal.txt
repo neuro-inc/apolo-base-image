@@ -1,1 +1,1 @@
-apolo-all==26.9.0
+apolo-all==26.11.0
